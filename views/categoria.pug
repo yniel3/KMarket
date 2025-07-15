@@ -1,0 +1,12 @@
+extends layout/app
+
+block contenido
+    main.inicio
+        h1.nombreCategoria= publicaciones[0].categoria.nombre
+        section.seccion
+            each item in publicaciones
+                include ./templates/cardDetallada
+
+
+
+

@@ -1,0 +1,29 @@
+header.header
+    .contenedorMenu
+        figure.logo
+            a(href="/") 
+                h1 KMarket
+        nav.navbar
+            a.enlaceMenu(href="/" class= pagina === "Inicio" ? "select" : "").enlace Inicio
+            a.enlaceMenu(href="/categorias/1" class= pagina === "Market" ? "select" : "").enlace Market
+            a.enlaceMenu(href="/perfil" class= pagina === "Tu-perfil" ? "select" : "").enlace Perfil
+            form.formCerrar(action="/auth/cerrar-sesion", method="POST")
+                input(type="hidden", name="_csrf", value= csrfToken)
+                input.cerrarSesion(class="cerrar-sesion" type="submit" name="" value="Cerrar sesión")
+        label(class="abrir" for="abrir")
+            input(type="checkbox" id="abrir")
+    .buscador
+        form.lupa( action="/buscador" method="POST" )
+            input(type="hidden" name="_csrf" value= csrfToken)
+            input(type="text" id="termino" name="termino" placeholder="Escribe tu busqueda")
+            input(type="submit" value="Buscar" class="buscar")
+
+if barraCategorias
+    .barraCategorias
+        a.enlace(href="/categorias/1") Alimentos
+        a.enlace(href="/categorias/2") Vehiculos
+        a.enlace(href="/categorias/3") Hogar y muebles
+        a.enlace(href="/categorias/4") Casas y departamentos
+        a.enlace(href="/categorias/5") Empleos y servicios
+        a.enlace(href="/categorias/6") Aparatos electronicos
+

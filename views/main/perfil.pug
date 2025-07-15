@@ -1,0 +1,78 @@
+extends ../layout/admin
+
+block estilos
+    meta(name="csrf-token" content= csrfToken)
+
+block contenido
+    main.inicio
+        .textos
+            h3  Bienvenido #{nombreUser}
+            p Esta area puedes ver tus publicaciones y agregar nuevos anuncios.
+            a(href="/perfil/publicar").btnCta Publicar articulo
+            //- pre= JSON.stringify(articulos, undefined, 2)
+
+        if articulos.length
+            h3 Tus publicaciones: #{total}
+            section.articulos
+                each articulo in articulos
+                    article.publicacion
+                        figure
+                            img(src=`/uploads/${articulo.imagen}`, alt= articulo.titulo)
+                        .descripcion
+                            a(href=`/mostrar/${articulo.id}` target="_blank").titulo
+                                p= articulo.titulo
+                                svg(xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='#000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round')
+                                    path(d='M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6')
+                                    path(d='M11 13l9 -9')
+                                    path(d='M15 4h5v5')
+
+                            p.info= articulo.descripcion
+                            p.precio= articulo.precio.nombre
+                        
+
+                        .botones
+                            button.estado.cambiarEstado(type="button" data-valor-id=`${articulo.id}` class= `${articulo.publicado ? "publico" : "no-publico" }`)= `${ articulo.publicado ? "Publicado" : "No Publicado"}`
+
+                            a.btn-Editar(href=`/perfil/editar/${articulo.id}`) Editar
+                                svg(xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='#000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round')
+                                    path(d='M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1')
+                                    path(d='M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z')
+                                    path(d='M16 5l3 3')
+
+                            form.eliminar( method="POST" action=`/perfil/eliminar/${articulo.id}`)
+                                input(type="hidden" name="_csrf" value= csrfToken)
+                                label(for="eliminar") 
+                                    p Eliminar
+                                    svg(xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='#000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round')
+                                        path(d='M4 7l16 0')
+                                        path(d='M10 11l0 6')
+                                        path(d='M14 11l0 6')
+                                        path(d='M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12')
+                                        path(d='M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3')
+                                input(type="submit" id="eliminar" class="btn-delete" value="")
+                            if articulo.mensajes.length >= 1
+                                a.mensajes(href=`/mensajes/${articulo.id}`) Ver mensajes
+            .paginador
+                - var n = 1
+                    if paginaActual > 1
+                        a.flecha.paginas(href=`/perfil?pagina=${paginaActual - 1}`)
+                            svg(xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='#000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round')
+                                path(d='M14 6l-6 6l6 6v-12')
+                            | Atras
+                    while n <= paginas
+                        a.paginas(href=`/perfil?pagina=${n}` class=`${ paginaActual == n ? "paginaActual" : ""}`) #{n++}
+                    if paginaActual < paginas
+                        a.flecha.paginas(href=`/perfil?pagina=${Number(paginaActual) + 1}`) Siguiente
+                            svg(xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='#000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round')
+                                path(d='M10 18l6 -6l-6 -6v12')
+
+        else 
+            h4.sin-nada No tienes articulos publicados
+                svg(xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewbox='0 0 24 24' fill='none' stroke='#000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round')
+                    path(d='M12 21a9 9 0 1 1 0 -18a9 9 0 0 1 0 18z')
+                    path(d='M9 10h-.01')
+                    path(d='M15 10h-.01')
+                    path(d='M8 16l1 -1l1.5 1l1.5 -1l1.5 1l1.5 -1l1 1')
+
+block scripts
+    script(src="/js/cambiarEstado.js") 

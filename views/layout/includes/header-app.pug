@@ -1,0 +1,31 @@
+header.header
+    .contenedorMenu
+        figure.logo
+            a(href="/") 
+                h1 KMarket
+        
+        nav.navbar
+            a(href="/" class= pagina === "Inicio" ? "select" : "").enlace Inicio
+            a(href="/categorias/1" class= pagina === "Market" ? "select" : "").enlace Market
+            a(href="/perfil" class= pagina === "Tu-perfil" ? "select" : "").enlace Perfil
+            a.enlaceMenu.login(href="/auth/login") Login
+                svg(xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='#000000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round')
+                    path(d='M15 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2')
+                    path(d='M21 12h-13l3 -3')
+                    path(d='M11 15l-3 -3')
+        label(class="abrir" for="abrir")
+            input(type="checkbox" id="abrir")
+    .buscador
+        form.lupa( action="/buscador" method="POST" )
+            input(type="hidden" name="_csrf" value= csrfToken)
+            input(type="text" id="termino" name="termino" placeholder="Escribe tu busqueda")
+            input(type="submit" value="Buscar" class="buscar")
+
+if barraCategorias
+    .barraCategorias
+        a.enlace(href="/categorias/1") Alimentos
+        a.enlace(href="/categorias/2") Vehiculos
+        a.enlace(href="/categorias/3") Hogar y muebles
+        a.enlace(href="/categorias/4") Casas y departamentos
+        a.enlace(href="/categorias/5") Empleos y servicios
+        a.enlace(href="/categorias/6") Aparatos electronicos

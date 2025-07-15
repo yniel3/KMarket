@@ -1,0 +1,17 @@
+extends ../layout/admin
+
+block contenido
+    main.inicio
+        h1= pagina
+        .mensajesDiv
+            if mensajes.length
+                ul.mensajes
+                    each mensaje in mensajes
+                        li.msj
+                            p.nombre Nombre: #{mensaje.usuario.nombre}
+                            p.texto Mensaje: #{mensaje.mensaje}
+                            p.fecha Recibido: #{formatearFecha(mensaje.createdAt)}
+
+                
+            else
+                p No tienes ningun mensajes

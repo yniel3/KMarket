@@ -1,0 +1,9 @@
+
+.errores
+    each error in errores
+        p.error *
+            span.msg= error.msg
+        script.
+            setTimeout(() => {
+                document.querySelector(".errores").remove();
+            }, 3000);

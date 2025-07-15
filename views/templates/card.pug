@@ -1,0 +1,5 @@
+.card
+    h3.titulo= item.titulo
+    img(src=`/uploads/${item.imagen}`, alt=`${item.titulo}`)
+    p= item.descripcion
+    a(href=`/mostrar/${item.id}`) Ver articulo

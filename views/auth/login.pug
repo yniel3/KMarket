@@ -1,0 +1,17 @@
+extends ../layout/index
+
+block contenido
+    div.entrada
+        form.form(method="POST" action="/auth/login" novalidate="")
+            input(type="hidden" name="_csrf" value= csrfToken)
+            if errores
+                    include ../templates/errores
+            p.heading Bienvenido,
+                span inicia secion.
+            input.input(type="email" placeholder="Escribe tu correo" name="email")
+            input.input(type="password" placeholder="Ingresa tu password" name="password")
+            button.btnForm Iniciar
+
+            .enlacesDiv
+                a(href="/auth/registro").enlace Registrarme
+                a(href="/auth/olvide-password").enlace Olvidaste tu password?

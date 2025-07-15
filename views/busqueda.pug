@@ -1,0 +1,8 @@
+extends layout/app
+
+block contenido
+    main.inicio
+        h1 #{pagina} : #{publicaciones.length} publicaciones
+        section.seccion
+            each item in publicaciones
+                include ./templates/cardDetallada

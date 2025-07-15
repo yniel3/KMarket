@@ -1,0 +1,54 @@
+extends layout/app
+
+block estilos
+    link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
+block contenido
+    main.inicio
+
+        .temas
+            .cardEnlaces
+                h3 Envia y recibe dinero.
+                img(src="send-money.png", alt="Enviar Dinero")
+                a(href="#") Ver pagina
+
+            .cardEnlaces
+                h3 Boletos de avion
+                img(src="plane-ticket.png", alt="Boletos de Avion")
+                a(href="#") Ver pagina
+
+        .banner
+            .aviso
+                .textos
+                    h3 Las mejores ventas en tu sitio 100% seguro
+                    p Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima tempora eum non vel consequuntur molestias ex omnis temporibus et quis modi, ducimus cupiditate aspernatur beatae iste quod quo totam quia.
+                
+                img(src="handshake.png", alt="comprador y vendedor")
+        .seccion
+            each item in categoriaUno
+                include ./templates/card
+                
+            each item in categoriaDos
+                include ./templates/card
+        .mapita
+            h4 Direcciones de articulos que podrian interesarte :
+            .filtrado
+                p.textofiltro Filtrar por :
+                .selectFiltro
+                    .seleccion
+                        label(for="caategorias") Categorias : 
+                        select(name="categoria" id="categorias")
+                            option(value="") - Seleccione -
+                            each categoria in categorias
+                                option(value=categoria.id)= categoria.nombre
+                    .seleccion
+                        label(for="precios") Rango de precios : 
+                        select(name="precios" id="precios")
+                            option(value="") - Seleccione -
+                            each precio in precios
+                                option(value=precio.id)= precio.nombre
+
+            div(id="mapa-inicio")
+
+block scripts
+    script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
+    script(src="/js/mapaInicio.js")

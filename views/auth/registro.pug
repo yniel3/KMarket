@@ -1,0 +1,25 @@
+extends ../layout/index
+
+
+block contenido
+    div.entrada
+        form.form(method="POST" action="/auth/registro" novalidate='')
+            input(type="hidden" name="_csrf" value= csrfToken)
+            if errores
+                    include ../templates/errores
+
+            p.heading Registrase,
+                span para continuar
+            
+            input.input(type="name" placeholder="Nombre" name="nombre" value= usuario ? usuario.nombre : "")
+            input.input(type="email" placeholder="Correo" name="email" value= usuario ? usuario.email : "")
+            input.input(type="password" placeholder="Password" name="password")
+            input.input(type="password" placeholder="Confirmar password" name="confirmPassword")
+
+            button.btnForm(type="submit") Continuar
+
+            .enlacesDiv
+                a(href="/auth/login").enlace Ir a login >>
+            
+
+

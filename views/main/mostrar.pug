@@ -1,0 +1,48 @@
+extends ../layout/app
+
+block estilos
+    link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
+
+block contenido
+    main.inicio
+        .publicacion
+            if errores
+                    include ../templates/errores
+            figure.imagen
+                img(src=`/uploads/${publicacion.imagen}`, alt= publicacion.titulo)
+
+            h1.titulo= publicacion.titulo
+            .etiquetas
+                p Categoria: #{publicacion.categoria.nombre}
+                p Rango de precio: #{publicacion.precio.nombre}
+            p.descripcion Descripcion: #{publicacion.descripcion}
+
+            .ubicacion
+                h3 Ubicacion del producto :
+                p.calle= publicacion.calle
+                #mapa
+                    p.hidden(id="lat" )= publicacion.lat
+                    p.hidden(id="lng" )= publicacion.lng
+
+            
+            if !esVendedor
+                .contactar
+                    if enviado
+                        p enviado correctamente
+                    else if usuario
+
+                        form( method="POST")
+                            h3 Envia un mensaje al vendedor
+                            input(type="hidden" name="_csrf" value= csrfToken)
+                            label(for="contactar") 
+                            textarea(name="mensaje" class="mensaje" id="contactar" placeholder="Escribe tu mensaje aqui")
+                            input(type="submit" value="Enviar mensaje") 
+                    else 
+                        
+                        p Create una cuenta para contactar al Vernderdor.
+                        a(href="/auth/registro") Registrate aqui
+                        
+
+block scripts
+    script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
+    script(src="/js/mostrarMapa.js")

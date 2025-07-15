@@ -1,0 +1,10 @@
+extends ../layout/index 
+
+block  contenido
+    div.entrada
+        .form
+            p.heading(class= error ? "bien" : "mal")= mensaje
+            if !error
+                a.btnForm(href="/") Entra ahora.
+            if error
+                a.btnForm(href="/auth/registro") Registrame ahora
