@@ -1,20 +1,20 @@
-# 📝 KMarket
+#  KMarket
 
 Una aplicación web para publicar, visualizar y filtrar publicaciones de usuarios registrados. Los visitantes pueden navegar por las publicaciones pero no podrán interactuar hasta que verifiquen su cuenta por correo electrónico. El curso está basado en un proyecto del curso de Node.js del profesor Juan Pablo de la Torre.
 
-## 🚀 Características
+##  Características
 
-- ✅ Registro y autenticación de usuarios
-- 📧 Verificación de cuenta vía email (con tokens y SMTP)
-- 📝 Publicación y visualización de posts
-- 🔍 Filtros por contenido, autor y fecha
-- 🎨 Estilos CSS personalizados y diseño responsivo
-- 🛡️ Protección CSRF y validación de formularios
-- 📦 Carga de archivos con Multer
+-  Registro y autenticación de usuarios
+-  Verificación de cuenta vía email (con tokens y SMTP)
+-  Publicación y visualización de posts
+-  Filtros por contenido, autor y fecha
+-  Estilos CSS personalizados y diseño responsivo
+-  Protección CSRF y validación de formularios
+-  Carga de archivos con Multer
 
 >### Nota: Este proyecto requiere variables de entorno y ciertas dependencias adicionales para funcionar correctamente. No se publica como paquete, ya que está pensado principalmente para quienes revisen el código fuente. 
 
-## 🛠️ Tecnologías utilizadas
+## Tecnologías utilizadas
 
 | Tecnología         | Versión   | Uso principal                          |
 |--------------------|-----------|----------------------------------------|
@@ -32,9 +32,9 @@ Una aplicación web para publicar, visualizar y filtrar publicaciones de usuario
 | pug                | ^3.0.3    | Motor de plantillas                    |
 | sequelize          | ^6.37.7   | ORM para MySQL                         |
 
-## 💻 Ver el codigo
+##  Ver el codigo
 
-- Visita el repositorio:
+- Clonar el repositorio:
    ```bash
    git clone https://github.com/yniel3/KMarket
 
