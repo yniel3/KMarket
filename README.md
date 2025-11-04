@@ -43,7 +43,7 @@ Una aplicación web para publicar, visualizar y filtrar publicaciones de usuario
 
 Aquí puedes ver cómo se ve la aplicación en funcionamiento:
 
-![Captura de pantalla 1](public\img\img-capture1.png)
-![Captura de pantalla 2](public\img\img-capture2.png)
-![Captura de pantalla 3](public\img\img-capture3.png)
-![Captura de pantalla 4](public\img\img-capture4.png)
+![Captura de pantalla 1](img-capture1.png)
+![Captura de pantalla 2](img-capture2.png)
+![Captura de pantalla 3](img-capture3.png)
+![Captura de pantalla 4](img-capture4.png)
